@@ -1,0 +1,68 @@
+cricket=[]
+badminton=[]
+football=[]
+
+NoCric = int(input("Enter number of students who playing Cricket: "))
+print(f"Enter the Roll number of these {NoCric} students who play Cricket: ")
+
+for i in range(0,NoCric):
+    std = int(input("Enter Roll number: "))
+    if std not in cricket:
+        cricket.append(std)
+print("The list of students that playing cricket: ",cricket)
+    
+NoBad = int(input("Enter number of students who playing Badminton: "))
+print(f"Enter the Roll number of these {NoBad} students who play Badminton: ")
+
+for i in range(0,NoBad):
+    stdt = int(input("Enter Roll number: "))
+    if stdt not in badminton:
+        badminton.append(stdt)
+print("The list of students playing badminton: ",badminton)
+
+NoFoot = int(input("Enter number of students who playing Football: "))
+print(f"Enter the Roll number of these {NoFoot} students who play Football: ")
+for i in range(0,NoFoot):
+    stdts = int(input("Enter Roll number: "))
+    if stdts not in football:
+        football.append(stdts)
+print("The list of students playing football: ",football)
+
+def intersection(list1,list2):
+    intersect=[]
+    for i in list1:
+        if i in list2:
+            intersect.append(i)
+    return intersect
+            
+def union(list1,list2):
+    uni=list1.copy()
+    for j in list2:
+        if j not in uni:
+            uni.append(j)
+    return uni
+
+def difference(list1,list2):
+    diff=[]
+    for k in list1:
+        if k not in list2:
+            diff.append(k)
+    return diff
+
+def symetrical_difference(list1,list2):
+    S1=difference(list1,list2)
+    S2=difference(list2,list1)
+    list3=union(S1,S2)
+    return list3
+    
+SE_Total = union(union(cricket,badminton),football)
+
+print("The list of students who play both cricket and badminton is: ", intersection(cricket,badminton),'\n')
+    
+print("The list of students who play either cricket or badminton but not both is: ", symetrical_difference(cricket,badminton),'\n')
+    
+print("The number of students who play neither cricket nor badminton is: ", len(difference(SE_Total,union(cricket,badminton))),'\n')
+    
+print("The number of students who play cricket and football but not badminton is: ", len(difference(intersection(cricket,football),badminton)),'\n')
+    
+print("The total list of students in second year computer engineering is: ",SE_Total)
